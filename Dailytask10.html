@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flowa Portfolio</title>
+  <style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #2f2f2f;
+  color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 60px;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+}
+.op {
+  color:chocolate;
+} 
+.header nav a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.header nav a:hover {
+  color:chocolate;
+}
+
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 60px;
+  min-height: 100vh;
+}
+
+
+.hero-text .hello {
+  color: chocolate;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.hero-text h1 {
+  font-size: 50px;
+  margin: 20px 0;
+}
+
+.hero-text h1 span {
+  color:chocolate;
+}
+
+.hero-text p {
+  color: #bbb;
+  max-width: 500px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+
+.buttons {
+  display: flex;
+  gap: 15px;
+}
+
+button {
+  padding: 12px 28px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.hire {
+  background: black;
+  color: #fff;
+}
+
+.download {
+  background: chocolate;
+  color:white;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+
+.hero-img img {
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+}
+
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo"><span class="op">Op</span>pty</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Resume</a>
+    <a href="#">Portfolio</a>
+    <a href="#">Blog</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <span class="hello">Hello !</span>
+    <h1>
+      I'm Professional Web Designer &<br>
+      <span>Wordpress Developer</span>
+    </h1>
+    <p>
+      It is a long established fact that a reader will be distracted
+      by the readable content of a page when looking at its layout.
+    </p>
+
+    <div class="buttons">
+      <button class="hire">Hire Me</button>
+      <button class="download">Download CV</button>
+    </div>
+  </div>
+
+  <div class="hero-img">
+    <img src="oppty.jpg">
+  </div>
+</section>
+
+</body>
+</html>
