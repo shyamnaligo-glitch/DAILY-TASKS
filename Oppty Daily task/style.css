@@ -1,0 +1,95 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+.container{
+    width:90%;
+    margin:50px auto;
+    display:flex;
+    background:white;
+    padding:20px;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.form-box{
+    width:65%;
+    padding:20px;
+}
+
+.cookie-box{
+    background:#d9f1f4;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:5px;
+}
+
+.row{
+    display:flex;
+    gap:20px;
+}
+
+.field{
+    flex:1;
+    margin-top:15px;
+}
+
+.field label{
+    display:block;
+    margin-bottom:5px;
+    font-size:14px;
+}
+
+.field input,
+.field textarea{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:4px;
+}
+
+.field textarea{
+    height:120px;
+    resize:none;
+}
+
+.full{
+    width:100%;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 30px;
+    border:none;
+    background:#ff7a3d;
+    color:white;
+    border-radius:20px;
+    cursor:pointer;
+    float:right;
+}
+
+button:hover{
+    background:#ff5a1f;
+}
+
+/* Right Side */
+.info-box{
+    width:35%;
+    padding:30px;
+}
+
+.info-box h3{
+    margin-bottom:15px;
+}
+
+.info-box p{
+    margin-bottom:10px;
+    color:#555;
+}
