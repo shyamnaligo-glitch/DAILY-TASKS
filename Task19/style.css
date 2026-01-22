@@ -1,0 +1,69 @@
+*{
+margin: 0;
+padding: 20px;
+}
+body{
+font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+max-width: 1100px;
+margin:auto;
+padding: 20px;
+background: #ffff;
+border-radius: 6px;
+}
+.main-title {
+text-align: center;
+margin-bottom: 25px;
+font-weight: bold
+}
+.project-box {
+border: 2px dashed #7cb342 ;
+margin-bottom: 30px;
+}
+.project-title {
+text-align: center;
+color: #3c763d;
+margin-bottom: 15px;
+}
+.project-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+.project-table th{
+    background: #fc803d;
+    color:#ffffff;
+    padding: 10px;
+    border: 2px solid#dddddd;
+}
+.project-table td{
+    padding: 10px;
+    border: 2px solid#dddddd;
+    vertical-align: top;
+}
+.amount{
+    color:#3c753d;
+    font-weight: bold;
+}
+.description{
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    border: 2px solid#dddddd;
+}
+.photo-frame {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 photos = 1fr each */
+    gap: 10px;
+    border: 2px solid #dddddd;;
+    padding: 30px;
+    background: #f9f9f9;
+    align-items: center;
+}
+
+.photo-frame img {
+    width: 100%;
+    border-radius: 2px;
+    
+}
