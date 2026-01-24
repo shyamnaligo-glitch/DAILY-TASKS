@@ -1,0 +1,98 @@
+body{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: lightseagreen
+}
+.header{
+display: flex;
+justify-content: space-between;
+align-items: center;
+background: #222;
+color: azure;
+padding: 15px 30px;
+}
+.header a{
+    color: azure;
+    margin-left: 15px;
+    text-decoration: none;
+}
+.gallery{
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+padding: 50px
+}
+.card{
+  background:white;
+  border-radius: 50px; 
+}
+.card img{
+    width: 100%;
+}
+
+.card-body{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+.card-body button{
+    background: #222;
+    color: aliceblue;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+
+} 
+.footer{
+    background: white;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    
+}
+.flex{
+background: #222;
+color: aliceblue;
+font-size: 25px;
+padding: 30px;
+height: 50%;
+width: 70%;
+display: flex;
+justify-content: space-between;
+gap:20px
+
+}
+ .c{
+    background: red;
+    flex-grow: 0;
+    padding: 15px 30px;
+ } 
+.s{
+    background: yellowgreen;
+    flex-grow: 1;
+    padding: 15px 30px
+}
+ 
+ .flex-n{
+background: #222;
+color: aliceblue;
+font-size: 25px;
+padding: 30px;
+height: 50%;
+width: 70%;
+display: flex;
+justify-content: space-between;
+gap:20px
+ }
+ .h{
+    background: pink;
+    padding: 15px 30px;
+    flex-grow: 1;
+ }
+ .y{
+    background: rgb(50, 205, 84);
+    padding: 15px 30px;
+    flex-grow: 0;
+ }
+ 
