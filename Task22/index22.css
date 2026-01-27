@@ -1,0 +1,83 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+bady {
+  background: #ffffff;
+}
+#container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+.headerpart h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #0a2540;
+}
+.headerpart p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.content {
+  margin-bottom: 40px;
+}
+.content button {
+  padding: 10px 20px;
+  border-radius: 25px;
+  background: white;
+  cursor: pointer;
+  color: #0a2540;
+}
+.tools:hover {
+  background: #2f5f7c;
+  color: #ffffff;
+}
+.active:hover {
+  background: #2f5f7c;
+  color: #ffffff;
+}
+.reactive:hover {
+  background: #2f5f7c;
+  color: #ffffff;
+}
+.grip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.card {
+  background: whitesmoke;
+  padding: 15px;
+  border-radius: 15px;
+  width: 340px;
+}
+.card h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #0a2540;
+}
+.card p {
+  font-size: 14px;
+  line-height: 1.3;
+}
+.grip :hover {
+  transform: translatex(-8px);
+
+  background: rgba(0, 0, 0, 0);
+}
+
+@media (max-width: 900px) {
+  .grip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .grip {
+    grid-template-columns: repeat(1fr);
+  }
+}
