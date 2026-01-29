@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+body {
+ background: radial-gradient(circle at top left, #2a1400, #000),
+              radial-gradient(circle at bottom right, #00132a, #000);
+  color: var(--white);
+  min-height: 100vh;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 60px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.logo-icon {
+  background: linear-gradient(90deg, #ff7a18, #4facfe);
+  padding: 12px 14px;
+  border-radius: 100%;
+  font-weight: bold;
+}
+.logo h3 {
+  color: aliceblue;
+}
+
+.color {
+  background:linear-gradient(90deg, #ff7a18, #4facfe);
+}
+.menu a {
+  text-decoration: none;
+  gap: 50px;
+  font: size 10px;
+  padding: 5px 15px;
+  color: white;
+}
+.menu a:hover{
+    background: linear-gradient(90deg, #ff7a18, #4facfe);;
+}
+.get {
+  padding: 15px 30px;
+  border-radius: 25px;
+  background: white;
+  color: black;
+  cursor: pointer;
+}
+
+#main-section {
+  margin-top: 120px;
+  text-align: center;
+}
+.hero {
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+h1 {
+  color: aliceblue;
+}
+.the{
+  background: linear-gradient(90deg, #ff7a18, #4facfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+span the .paragraph {
+  color: white;
+}
+.button {
+  margin-top: 20px;
+}
+.btn {
+  padding: 15px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin: 0 10px;
+  background: black;
+  color: white;
+}
+.star {
+  display: flex;
+  margin-right: 20px;
+  border-radius: 26px;
+}
+
+.btn:hover {
+  background: orange;
+}
+.left-panel {
+  width: 350px;
+}
+.status-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 22px;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 140, 60, 0.35),
+    rgba(60, 120, 255, 0.35)
+  );
+  box-shadow: 0 0 25px rgba(255, 120, 60, 0.35);
+  backdrop-filter: blur(10px);
+}
+
+.icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff8c3a, #5b7cff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+}
+
+.text .label {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #ffb27a;
+}
+
+.text h3 {
+  margin: 2px 0 0;
+  font-size: 16px;
+  color: #fff;
+}
