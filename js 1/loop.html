@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let i = 1;
+      for (let i = 1; i <= 20; i++) {
+        if (i % 2 === 0) {
+          console.log(i);
+        }
+      }
+
+      let z = 1;
+      while (z <= 20) {
+        if (z % 2 !== 0) {
+          console.log(z);
+        }
+        z++;
+      }
+
+      let t = 1;
+      do {
+        console.log(t);
+        t++;
+      } while (t <= 20);
+
+      // for in loop
+
+      const fruit = ["mango", "apple", "banana", "caconut"];
+
+      for (x in fruit) {
+        console.log(x);
+      }
+      let numbers = [10, 20, 30, 40];
+
+      for (i = 0; i < numbers.length; i++) {
+        console.log("write the index" + numbers[i]);
+      }
+
+      let user = { name: "Asha", age: 22 };
+
+      for (let key in user) {
+        console.log(key, user[key]);
+      }
+
+
+      // for of
+      let fr = ["mango", "apple", "banana", "caconut"];
+
+      for (val of fr) {
+        console.log(val);
+      }
+    </script>
+  </body>
+</html>
