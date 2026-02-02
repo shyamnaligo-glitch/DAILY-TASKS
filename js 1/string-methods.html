@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string-methods</title>
+</head>
+
+<body>
+    The following are the string method we will use in JavaScript
+
+    1.slice():
+    ------------
+    <!-- This method extracts a section of a string and returns it as a new string, without modifying the original
+    string.
+
+    syntax: string.slice(startIndex, endIndex)
+
+    Example:
+    let text = "Hello World Sujana";
+
+        let result1 = text.slice(0, 5);  // "Hello" (from index 0 to 4)
+        let result2 = text.slice(6);     // "World Sujana" (from index 6 to end)
+        let result3 = text.slice(6, 11); // "World" (from index 6 to 10)
+
+        console.log(result1);
+        console.log(result2);
+        console.log(result3); -->
+
+    2.substring():
+    ---------------
+    The substring() method extracts characters from a string between two specified indices and returns a
+    new string.
+
+    syntax: string.substring(startIndex, endIndex)
+
+    Example:
+    let text = "JavaScript";
+        let result = text.substring(0, 4); 
+        console.log(result); 
+
+    3.substr():
+    ------------
+    The substr() method extracts a part of a string, starting at a specified position and returning a specified number
+    of characters.
+    (Note: substr() is deprecated and should be avoided. Use slice() or substring() instead.)
+
+    syntax: string.substr(startIndex, length)
+
+    Example:1
+    let text = "Hello World";
+        let result1=text.substr(0, 5);  // "Hello" (start at 0, take 5 chars)
+        let result2=text.substr(6, 5);  // "World" (start at 6, take 5 chars)
+        console.log(result1);
+        console.log(result2);
+
+        Example:2
+        let text = "JavaScript";
+        let result1=text.substr(-6);      // "Script" (6 chars from end)
+        let result2=text.substr(-6, 4);   // "Scri" (from -6, take 4 chars)
+        console.log(result1);
+        console.log(result2);
+
+    4.replace():
+    ------------
+
+    The replace() method is a string method (not an array method). It searches a string for a value and returns a new
+    string with the first match replaced.
+
+
+    syntax: string.replace(searchValue, newValue)
+
+    Example:1
+    let text = "JavaScript equals to JavaScript coding Language";
+        let result = text.replace("Java", "Type");
+        console.log(text);
+        console.log(result);
+
+   Example:2 for replace & replace all
+   let text = "a b a b a";
+text.replace("a", "X");
+text.replaceAll("a", "X");
+
+    5.replaceAll():
+    ------------
+
+    The replaceAll() method searches a string for all occurrences of a value and returns a new string with all matches
+    replaced.
+
+    syntax: string.replaceAll(searchValue, newValue)
+
+    Example:
+    let text = "JavaScript equals to JavaScript coding Language";
+        let result = text.replaceAll("Java", "Type");
+        console.log(text);
+        console.log(result);
+
+    6.toUpperCase():
+    ------------
+
+    The toUpperCase() method converts all characters in a string to uppercase letters and returns a new string.
+
+    syntax: string.toUpperCase()
+
+    Example:
+    let gfg = 'GFG ';
+    let geeks = 'stands-for-GeeksforGeeks';
+    console.log(geeks.toUpperCase());
+
+    7.toLowerCase():
+    ------------
+    The toLowerCase() method converts all characters in a string to lowercase letters and returns a new string.
+
+    syntax: string.toLowerCase()
+
+    Example:
+    let gfg = 'GFG ';
+    let geeks = 'stands-for-GeeksforGeeks';
+    console.log(geeks.toLowerCase());
+
+    8.concat():
+    ------------
+
+    The concat() method joins two or more strings together and returns a new combined string.
+
+    syntax: string1.concat(string2, string3, ..., stringN)
+
+    Example:
+    let a = "Java";
+        let result=a.concat("Script", " is", " awesome");
+        console.log(result);
+
+    9.trim():
+    ----------
+
+    The trim() method removes whitespace from both ends of a string and returns a new string.
+
+    syntax: trim()
+
+    Example:
+    let userInput = "  sujana@example.com  ";
+        let email = userInput.trim();
+        console.log(email);
+
+    10.trimStart():
+    ------------
+
+    The trimStart() method removes whitespace from the beginning (start) of a string and returns a new string.
+
+
+    syntax: string.trimStart()
+
+    Example:
+    let str = " Soul";
+    console.log(str);
+    let part = str.trimStart();
+    console.log(part);
+
+    11.trimEnd():
+    ------------
+
+    The trimEnd() method removes whitespace from the end of a string and returns a new string.
+
+
+    syntax: string.trimEnd()
+
+    Example:
+    let userInput = "admin@example.com ";
+    let cleanEmail = userInput.trimEnd();
+    console.log(cleanEmail);
+
+    12.padStart():
+    ------------
+
+    The padStart() method pads the current string with another string from the beginning until the resulting string
+    reaches a specified length.
+
+    syntax: string.padStart(targetLength, padString)
+
+    Example:1
+    let stone = "Soul";
+    stone = stone.padStart(9, "Mind ");
+    console.log(stone);
+
+    Example:2
+    let num = "42";
+    let result = num.padStart(5, "0");
+    console.log(num);
+    console.log(result);
+
+    13.padEnd():
+    ------------
+
+    The padEnd() method pads the current string with another string from the end until the resulting string reaches a
+    specified length.
+
+    (Soul = 4 chars + " Power" fills remaining 6 chars to reach 10 total)
+
+    syntax: string.padEnd(targetLength, padString)
+
+    Example:1
+    let stone = "Soul";
+    stone = stone.padEnd(10, " Power");
+    console.log(stone);
+
+    Example:2
+    let num = "42";
+    let result = num.padEnd(5, "0");
+    console.log(num);
+    console.log(result);
+
+
+    14.charAt():
+    ------------
+
+    The charAt() method returns the character at a specified index in a string.
+
+    index: The position of the character (0-based index)
+
+    syntax: string.charAt(index)
+
+    Example:1
+
+    let text = "Hello";
+    let firstLetter = text.charAt(0);
+    let secondLetter = text.charAt(1);
+    let thirdLetter = text.charAt(4);
+
+    console.log(firstLetter);
+    console.log(secondLetter);
+    console.log(thirdLetter);
+
+    Example:2
+
+    let word = "Hello";
+    for (let i = 0; i < word.length; i++) { console.log(word.charAt(i));
+     } 
+     15.charCodeAt():
+      ------------
+       The charCodeAt() method returns the Unicode value (UTF-16 code) of the character at a specified index in a string.
+
+        Common Unicode values:
+        Uppercase A-Z: 65-90
+        Lowercase a-z: 97-122
+        Digits 0-9: 48-57
+        Space: 32
+
+             syntax: string.charCodeAt(index)
+
+        Example:1 
+        let char="l" ;
+       console.log(char.charCodeAt(0)); 
+       let word="Hello" ; 
+       for (let i=0; i < word.length; i++) { 
+        console.log(word[i] + ": " + word.charCodeAt(i));
+     } 
+     Example:2 
+     let text="ABC"; 
+     let firstLetter=text.charCodeAt(0); 
+        let secondLetter=text.charCodeAt(1); 
+        let thirdLetter=text.charCodeAt(2);
+        console.log(firstLetter); 
+        console.log(secondLetter); 
+        console.log(thirdLetter); 
+        16.split():
+        ----------- 
+
+        The split() method divides a string into an array of substrings based on a specified separator. 
+
+        You can give any separator in b/w sentence 
+
+        syntax: string.split(separator, limit) 
+
+        Example:separator 
+
+        let name='BPO' ; 
+        letfullForm='stands-for-business-process-outstanding'; 
+        console.log(fullForm.split('-')); 
+        
+        Example:limit 
+        let text="a-b-c-d-e" ; 
+        let result=text.split("-", 3); 
+        console.log(result);
+     </body>
+
+</html>
