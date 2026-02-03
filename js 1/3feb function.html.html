@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>function</title>
+  </head>
+  <body>
+      <script>
+      // 1.named-function
+      //   function sum(num1,num2){
+      //   return num1 + num2;
+      //   }
+      //   console.log(sum(5,10));
+
+      //   document.getElementById("named-statement").innerHTML=sum(50,89);
+// <------------------------------------------------------------------------>
+      // //   2. Anonymous Function:
+      //   const add = function (num1,num2) {
+      //     return num1+num2;
+      //   };
+
+      //   const result = add(5, 3);
+      //   console.log(result);
+      // document.write(add(10,8));
+// <------------------------------------------------------------------------>
+      // 3. Immediately Invoked Function Expression (IIFE):
+      //     (function () {
+      //     console.log("This runs immediately!");
+      // })();
+      //   // // document.write("This runs immediately!");
+      //   // let greet = (function () {
+      //   //   return function (name) {
+      //   //       const msg = "Hello, " + name;
+      //   //       console.log(msg);
+
+      //     };
+      // })();
+
+      // <------------------------------------------------------------------------>
+      // / Assiging function to a variable
+
+      // var greet = function (name) {
+      //   return "Hello" + name + "!";
+      // };
+      // console.log("Named function assigning a variable :", greet(" Ravi"));
+      // let assig = function percentage (a,b){
+      //   return a % b;
+      // }
+      //   console.log ("Name function Assigning a variable:", assig(4,5));
+      // document.write(assig(10,9));
+      // var shyam = function(name){
+      //   return "Hi"   + name ;
+      // }
+      //   console.log (shyam(" madam sujana"));
+      //   document.write(shyam(" ravi,nimisha,bhargav "))
+      // <------------------------------------------------------------------------>
+      // Arrow Function
+      // let arrow = () => {
+      //   return "This is an arrow function";
+      // };
+      // console.log(arrow());
+
+      // const adding = (a, b) => {
+      //   return a + b;
+      // };
+      // console.log("Arrow Functions :", adding(4, 5));
+      // let syntax = () =>{
+      //   return "function of Arrow";
+      // }
+      // console.log(syntax());
+      // document.write("This one tyes: ", syntax());
+      // /<------------------------------------------------------------------------>
+      // // Default Arguments
+      // const add = function (num1=5,num2=9) {
+      //         return num1*num2;
+      //       };
+
+      //       console.log(add());
+      //     document.write(add());
+// <------------------------------------------------------------------------>
+      // Constructors:
+      // function names(name, age) {
+      //   this.name = name;
+      //   this.age = age;
+      // }
+      // let name1 = new names("akhila", 27);
+      // let name2 = new names("sujana", 28);
+      // let name3 = new names("teja", 29);
+      // name2.age = 30;
+
+      // console.log(name1);
+      // console.log(name2);
+      // console.log(name3);
+
+      // console.log
+      // <----------------------------------------------------------------------->
+      //     Generators
+      //    function* myfun() {
+      //   for (let i = 0; i <= 5; i++) {
+      //     yield i;
+      //   }
+      // }
+      // obj = myfun();
+      // console.log(obj.next());    
+      // console.log(obj.next());
+      // console.log(obj.next());
+      // console.log(obj.next());
+      // console.log(obj.next());
+      // console.log(obj.next());
+      // console.log(obj.next());
+// <------------------------------------------------------------->
+// //  Higher Order Function-
+//   //  A function that takes one or more functions as arguments or returns function as its result.
+//       function one(name, higher) {
+//         return higher(name);
+//       }
+//       function two(nameval) {
+//         return nameval;
+//       }
+//       console.log(two("vigneshwar", one));
+// document.write(two("shyam",one));
+// <------------------------------------------------------------->
+// Pure Function
+//  const a = 1;
+//       const b = 2;
+
+//       function add(a, b) {
+//         return a + b;
+//       }
+//       console.log(add(a, b));
+//       document.write(add(a,b));
+// <------------------------------------------------------------->
+// rest-operator Function
+// function sum(...args) {
+//     let total = 0;
+//     for (let i of args) {
+//         total += i;
+//     }
+//     return total;
+//     }
+//     console.log(sum(1, 2, 3, 4, 5,6,7,8)); 
+//     console.log(sum(1, 2, 3)); 
+    </script>
+  </body>
+</html>
