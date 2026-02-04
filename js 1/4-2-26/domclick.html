@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>click on</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        transition: background-color 0.4s ease;
+      }
+      button {
+        padding: 10px 20px;
+        margin: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 60px;
+        background: black;
+        color: white;
+      }
+      #message {
+        margin-top: 100px;
+        font-size: 22px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h2><u>How are you feeling today?</u></h2>
+
+    <button onclick="happy()">Happy Button😊</button>
+    <button onclick="sad()">Sad Button😢</button>
+    <button onclick="angry()">Angry Button😡</button>
+    <button onclick="sleepy()">Sleepy Button😴</button>
+    <div id="message"></div>
+    <script>
+      function happy() {
+        document.body.style.backgroundColor = "yellow";
+        document.getElementById("message").innerText = "I am feeling Great with help sujana! 😊";
+      }
+
+      function sad() {
+        document.body.style.backgroundColor = "blue";
+        document.getElementById("message").innerText =
+          "I am feeling down today. 😢";
+      }
+
+      function angry() {
+        document.body.style.backgroundColor = "red";
+        document.getElementById("message").innerText = "I am frustrated! 😡";
+      }
+
+      function sleepy() {
+        document.body.style.backgroundColor = "#2c003e"; // dark purple
+        document.getElementById("message").innerText = "I need a nap. 😴";
+      }
+    </script>
+  </body>
+</html>
