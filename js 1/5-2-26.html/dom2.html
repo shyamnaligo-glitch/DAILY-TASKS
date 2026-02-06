@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial;
+    }
+
+    .box {
+      width: 200px;
+      text-align: center;
+      padding: 20px;
+      border: 2px solid #333;
+      border-radius: 8px;
+    }
+
+    #count {
+      font-size: 32px;
+      margin: 15px 0;
+    }
+
+    button {
+      padding: 8px 14px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h3>Live Counter</h3>
+    <div id="count">0</div>
+
+    <button onclick="decrement()">-</button>
+    <button onclick="increment()">+</button>
+  </div>
+
+  <script>
+    let count = 0;
+
+    function increment() {
+      count++;
+      document.getElementById("count").innerText = count;
+    }
+
+    function decrement() {
+      count--;
+      document.getElementById("count").innerText = count;
+    }
+  </script>
+
+</body>
+</html>

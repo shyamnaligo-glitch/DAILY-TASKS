@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hidden/show</title>
+   <style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    #myButton{
+       font-size: 15px;
+       padding: 15px 30px;
+       border-radius: 25px;
+       background: black;
+       color: azure;
+    }
+    .img{
+        margin-bottom: auto;
+    }
+   </style>
+</head>
+<body>
+    <button id="myButton">hidden</button>
+    <img id="myimg" src="person3.jpg" width="300px">
+    
+   <script>
+const myButton=document.getElementById("myButton");
+const myimg=document.getElementById("myimg");
+myButton.addEventListener("click",event =>{
+if (myimg.style.display === "none"){
+myimg.style.display ="block";
+myButton.textContent="Hidden"
+}
+else{
+    myimg.style.display ="none";
+    myButton.textContent="show"
+    }
+});
+   </script>
+</body>
+</html>
