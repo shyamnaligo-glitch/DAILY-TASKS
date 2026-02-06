@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Palindrome Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 320px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            width: 45%;
+        }
+
+        .check-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .reset-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Palindrome Checker</h2>
+    <input type="text" id="text" placeholder="Enter text or number">
+
+    <div>
+        <button class="check-btn" onclick="checkPalindrome()">Check</button>
+        <button class="reset-btn" onclick="resetForm()">Reset</button>
+    </div>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function checkPalindrome() {
+        const text = document.getElementById("text").value;
+        const result = document.getElementById("result");
+
+        if (text === "") {
+            result.textContent = "Please enter something!";
+            result.style.color = "red";
+            return;
+        }
+
+        const cleanText = text.toLowerCase().replace(/[^a-z0-9]/g, "");
+        const reversedText = cleanText.split("").reverse().join("");
+
+        if (cleanText === reversedText) {
+            result.textContent = "It is a Palindrome ✅";
+            result.style.color = "green";
+        } else {
+            result.textContent = "Not a Palindrome ❌";
+            result.style.color = "orange";
+        }
+    }
+
+    function resetForm() {
+        document.getElementById("text").value = "";
+        document.getElementById("result").textContent = "";
+    }
+</script>
+
+</body>
+</html>

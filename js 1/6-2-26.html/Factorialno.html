@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Factorial Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            width: 320px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            width: 45%;
+        }
+
+        .calc-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .reset-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Factorial Calculator</h2>
+    <input type="number" id="number" placeholder="Enter a number" min="0">
+
+    <div>
+        <button class="calc-btn" onclick="calculateFactorial()">Calculate</button>
+        <button class="reset-btn" onclick="resetForm()">Reset</button>
+    </div>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function calculateFactorial() {
+        const num = document.getElementById("number").value;
+        const result = document.getElementById("result");
+
+        if (num === "") {
+            result.textContent = "Please enter a number!";
+            result.style.color = "red";
+            return;
+        }
+
+        if (num < 0) {
+            result.textContent = "Factorial not defined for negative numbers!";
+            result.style.color = "red";
+            return;
+        }
+
+        let fact = 1;
+        for (let i = 1; i <= num; i++) {
+            fact *= i;
+        }
+
+        result.textContent = `Factorial of ${num} is ${fact}`;
+        result.style.color = "green";
+    }
+
+    function resetForm() {
+        document.getElementById("number").value = "";
+        document.getElementById("result").textContent = "";
+    }
+</script>
+
+</body>
+</html>

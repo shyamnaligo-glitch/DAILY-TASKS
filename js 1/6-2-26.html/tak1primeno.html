@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prime Checker</title>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            background: #e0f2fe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            width: 280px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin: 10px,5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .check {
+            background: #22c55e;
+            color: white;
+        }
+
+        .reset {
+            background: #ef4444;
+            color: white;
+        }
+
+        #output {
+            margin-top: 10px;
+            font-weight: bold; 
+        }
+     </style> 
+        </head>
+<body>
+
+<div class="box">
+    <h3>Prime Number Checker</h3>
+
+    <input type="number" id="num" placeholder="Enter number">
+
+
+
+    <button class="check" onclick="isPrime()">Check</button>
+    <button class="reset" onclick="clearData()">Reset</button>
+ 
+    <p id="output"></p>
+</div>
+
+<script>
+    function isPrime() {
+        let number = document.getElementById("num").value;
+        let output = document.getElementById("output");
+
+        let count = 0;
+
+        for (let i = 1; i <= 100; i++) {
+            if (number % i === 0) {
+                count++;
+            }
+        }
+
+        if (count === 2) {
+            output.innerHTML = "✅ Prime Number";
+            output.style.color = "green";
+        } else {
+            output.innerHTML = "❌ Not a Prime Number";
+            output.style.color = "red";
+        }
+    }
+
+    function clearData() {
+        document.getElementById("num").value = "";
+        document.getElementById("output").innerHTML = "";
+    }
+</script>
+
+</body>
+</html>
