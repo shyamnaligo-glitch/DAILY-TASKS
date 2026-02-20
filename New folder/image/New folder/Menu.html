@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    font-family:'Montserrat', sans-serif;
+    background:#000;
+    color:#fff;
+    line-height:1.6;
+}
+nav {
+    position: absolute;
+    width: 100%;
+    padding: 20px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+nav .logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    
+}
+nav ul li {
+    cursor: pointer;
+    font-size: 16px;
+}
+.book-btn {
+    border: 1px solid #fff;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.book-btn:hover {
+    background: #fff;
+    color: #000;
+}
+.main{
+    height:80vh;
+    background:url('image/10004.jpg') center/cover no-repeat fixed;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+.main h1{
+    font-family:'Playfair Display', serif;
+    font-size:60px;
+    font-weight:400;
+}
+.section{
+    padding:100px 100px;
+    text-align:center;
+}
+.title{
+    font-family:'Playfair Display', serif;
+    font-size:40px;
+    margin-bottom:60px;
+}
+.menu-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px 80px;
+    max-width:1000px;
+    margin:auto;
+}
+.menu-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+    padding-bottom:10px;
+}
+.menu-name{
+    text-align:left;
+}
+.menu-name h4{
+    font-weight:400;
+    font-size:18px;
+}
+.menu-name p{
+    font-size:16px;
+    opacity:0.6;
+}
+.price{
+    font-size:16px;
+}
+.image-section{
+    height:400px;
+    background:url("image/10005.jpg") center/cover no-repeat fixed;
+}
+footer{
+    padding:60px 100px;
+    background:#0a0a0a;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:50px;
+}
+footer h3{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom:20px;
+    font-family:'Playfair Display', serif;
+}
+footer p{
+    font-size:16px;
+    opacity:0.7;
+}
+#topBtn{
+    position:fixed;
+    bottom:40px;
+    right:40px;
+    background:#fff;
+    color:#000;
+    padding:10px 15px;
+    cursor:pointer;
+    display:none;
+    border-radius:50%;
+}
+
+@media(max-width:900px){
+    .menu-grid{
+        grid-template-columns:1fr;
+    }
+
+    .navbar{
+        padding:20px 30px;
+    }
+
+    .section{
+        padding:80px 30px;
+    }
+
+    footer{
+        grid-template-columns:1fr;
+        padding:60px 30px;
+    }
+}
+</style>
+</head>
+
+<body>
+<nav>
+    <div class="logo">Bridge</div>
+    <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Menu</li>
+        <li>Reservations</li>
+        <li>Contact</li>
+    </ul>
+    <div class="book-btn">Book a table</div>
+</nav>
+
+<div class="main">
+    <h1>Menu</h1>
+</div>
+
+<section class="section">
+    <div class="title">Cocktails</div>
+
+    <div class="menu-grid">
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Royal Arrival</h4>
+                <p>Captain Morgan spiced rum, pineapple</p>
+            </div>
+            <div class="price">$19</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Tequila Sunrise</h4>
+                <p>Tequila, orange juice, grenadine</p>
+            </div>
+            <div class="price">$14</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Cuba Libre</h4>
+                <p>Dark rum, fresh lime, Coke</p>
+            </div>
+            <div class="price">$22</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Cuba Libre</h4>
+                <p>Dark rum, fresh lime, Coke</p>
+            </div>
+            <div class="price">$22</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Cuba Libre</h4>
+                <p>Dark rum, fresh lime, Coke</p>
+            </div>
+            <div class="price">$22</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Cuba Libre</h4>
+                <p>Dark rum, fresh lime, Coke</p>
+            </div>
+            <div class="price">$22</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Cuba Libre</h4>
+                <p>Dark rum, fresh lime, Coke</p>
+            </div>
+            <div class="price">$22</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Michelada</h4>
+                <p>Dark rum, fresh lime, Coke</p>
+            </div>
+            <div class="price">$19</div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">Wine Selection</div>
+
+    <div class="menu-grid">
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Léoville-Las Cases</h4>
+                <p>Saint-Julien, France</p>
+            </div>
+            <div class="price">$19</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Corton-Charlemagne</h4>
+                <p>Cote de Beaune, France</p>
+            </div>
+            <div class="price">$22</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Corton-Charlemagne</h4>
+                <p>Cote de Beaune, France</p>
+            </div>
+            <div class="price">$22</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Corton-Charlemagne</h4>
+                <p>Cote de Beaune, France</p>
+            </div>
+            <div class="price">$22</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Corton-Charlemagne</h4>
+                <p>Cote de Beaune, France</p>
+            </div>
+            <div class="price">$22</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Corton-Charlemagne</h4>
+                <p>Cote de Beaune, France</p>
+            </div>
+            <div class="price">$22</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Corton-Charlemagne</h4>
+                <p>Cote de Beaune, France</p>
+            </div>
+            <div class="price">$22</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Corton-Charlemagne</h4>
+                <p>Cote de Beaune, France</p>
+            </div>
+            <div class="price">$22</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Meiomi Pinot Noir</h4>
+                <p>California</p>
+            </div>
+            <div class="price">$17</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Hermitage La Chapelle</h4>
+                <p>Rhone, France</p>
+            </div>
+            <div class="price">$14</div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">Craft beer</div>
+
+    <div class="menu-grid">
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Yuengling Lager</h4>
+                <p>Captain Morgan spiced rum, pineapple</p>
+            </div>
+            <div class="price">$19</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Southern Star</h4>
+                <p>Tequila,orange juice, grenadine</p>
+            </div>
+            <div class="price">$14</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Southern Star</h4>
+                <p>Tequila,orange juice, grenadine</p>
+            </div>
+            <div class="price">$14</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Southern Star</h4>
+                <p>Tequila,orange juice, grenadine</p>
+            </div>
+            <div class="price">$14</div>
+        </div>
+        
+        <div class="menu-item">
+            <div class="menu-name">
+                <h4>Ranch Imperial</h4>
+                <p>Dark rum, fresh lime, Coke</p>
+            </div>
+            <div class="price">$22</div>
+        </div>
+
+         <div class="menu-item">
+            <div class="menu-name">
+                <h4>Ranch Imperial</h4>
+                <p>Dark rum, fresh lime, Coke</p>
+            </div>
+            <div class="price">$22</div>
+    </div>
+</section>
+
+<div class="image-section"></div>
+
+<footer>
+    <div>
+        <h3>Bridge</h3>
+        <p>🕒Mon-Sun: 09am - 09pm</p>
+        <p>📍161 Linden Avenue, London</p>
+        <p>📞+30 382 431 301</p>
+    </div>
+
+    <div>
+        <h3>Pages</h3>
+        <p>Home</p>
+        <p>Reservations</p>
+        <p>Menu</p>
+        <p>Contact</p>
+    </div>
+
+    <div>
+        <h3>Opening hours</h3>
+        <p>Monday - Friday:</p>
+        <p>10:00am - 01:00am</p><br>
+        <p>Saturday - Sunday:</p>
+        <p>10:00am - 03:00am</p>
+    </div>
+
+    <div>
+        <h3>Instagram</h3>
+        <p>@bridgebar</p>
+    </div>
+</footer>
+
+<div id="topBtn">↑</div>
+
+</body>
+</html>
