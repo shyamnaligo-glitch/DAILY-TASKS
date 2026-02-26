@@ -1,0 +1,165 @@
+
+<html>
+<head>
+    <title>Student Information</title>
+    <style>
+        body {
+            font-family: Arial;
+            background:ur
+            text-align: center;(i)
+        }
+
+        .container {
+            width: 400px;
+            margin: 20px auto;
+            background:#007bff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+.h2{
+    color:white;
+}
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 6px 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid blanchedalmond;
+            padding: 8px;
+        }
+
+        th {
+            background:BLACK;
+            color: white;
+        }
+
+        .edit { background: blueviolet; color: white; }
+        .delete { background: red; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Student Information</h2>
+
+    <input type="text" id="name" placeholder="Enter your Name">
+    <input type="number" id="age" placeholder="Enter your Age">
+    <input type="text" id="city" placeholder="Enter your City">
+    <button id="submitBtn">Add Student</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="studentList"></tbody>
+    </table>
+</div>
+
+<script>
+    const students = [];
+    let editIndex = -1;
+
+    const nameInput = document.getElementById("name");
+    const ageInput = document.getElementById("age");
+    const cityInput = document.getElementById("city");
+    const submitBtn = document.getElementById("submitBtn");
+    const studentList = document.getElementById("studentList");
+
+    submitBtn.addEventListener("click", addOrUpdateStudent);
+
+    function addOrUpdateStudent() {
+        const name = nameInput.value.trim();
+        const age = ageInput.value.trim();
+        const city = cityInput.value.trim();
+
+        if (!name || !age) {
+            alert("Please fill all fields");
+            return;
+        }
+
+        if (editIndex === -1) {
+            students.push({ name, age });
+        } else {
+            students[editIndex] = { name, age }; 
+            editIndex = -1;
+            submitBtn.textContent = "Add Student";
+        }
+
+        nameInput.value = "";
+        ageInput.value = "";
+
+        renderStudents();
+    }
+
+    function renderStudents() {
+        studentList.innerHTML = "";
+
+        students.forEach((student, index) => {
+
+            const row = document.createElement("tr");
+
+            const nameTd = document.createElement("td");
+            nameTd.textContent = student.name;
+
+            const ageTd = document.createElement("td");
+            ageTd.textContent = student.age;
+            const cityTd = document.createElement("td");
+            cityTd.textContent = student.city;
+
+            const actionTd = document.createElement("td");
+
+            const editBtn = document.createElement("button");
+            editBtn.textContent = "Edit";
+            editBtn.classList.add("edit");
+            editBtn.addEventListener("click", () => editStudent(index));
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete";
+            deleteBtn.classList.add("delete");
+            deleteBtn.addEventListener("click", () => deleteStudent(index));
+
+            actionTd.appendChild(editBtn);
+            actionTd.appendChild(deleteBtn);
+
+            row.appendChild(nameTd);
+            row.appendChild(ageTd);
+            row.appendChild(actionTd);
+
+            studentList.appendChild(row);
+        });
+    }
+
+    function editStudent(index) {
+        nameInput.value = students[index].name;
+        ageInput.value = students[index].age;
+        editIndex = index;
+        submitBtn.textContent = "Update Student";
+    }
+
+    function deleteStudent(index) {
+        students.splice(index, 1); 
+        renderStudents();
+    }
+</script>
+
+</body>
+</html>

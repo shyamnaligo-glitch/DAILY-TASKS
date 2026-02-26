@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz with Timer</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+            background: url(https://static.vecteezy.com/system/resources/thumbnails/044/849/711/small_2x/neon-animated-sign-neon-effect-4k-motion-animation-video.jpg);
+        }
+
+        .box {
+            background: whitesmoke;
+            width: 320px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+            background: black;
+            color: white;
+            border: 1px solid white;
+            border-radius: 8px;
+        }
+        
+
+        #timer {
+            color:black;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div class="box" id="loginBox">
+    <h2>Welcome to Quiz!</h2>
+    <button onclick="startQuiz()"> Start Quiz</button>
+</div>
+
+<!-- QUIZ PAGE -->
+<div class="box" id="quizBox" style="display:none;">
+    <h3 id="question"></h3>
+    <div id="options"></div>
+    <p>Time Left: <span id="timer">15</span> seconds</p>
+</div>
+
+<script>
+// Quiz Questions
+const questions = [
+    {
+        question: "What does HTML stand for?",
+        options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyper Tool Multi Language"],
+        answer: 0
+    },
+    {
+        question: "Which language is used for styling?",
+        options: ["CSS", "HTML", "Python"],
+        answer: 0
+    },
+    {
+        question: "Which language is used for website behavior?",
+        options: ["JavaScript", "C++", "Java"],
+        answer: 0
+    },
+    {
+        question: "Which tag is used for a paragraph in HTML?",
+        options: ["<p>", "<div>", "<h1>"],
+        answer: 0
+    },
+    {
+        question: "Which language is used to make web pages interactive?",
+        options: ["JS", "Java", "C++"],
+        answer: 0
+    },
+    {
+        question: "Which tag is used to create a hyperlink in HTML?",
+        options: ["<a>", "<ab>", "<href>"],
+        answer: 0
+    },
+    {
+        question: "Which property is used in CSS to change text color?",
+        options: ["color", "text-color", " backgroundcolor"],
+        answer: 0
+    },
+    {
+        question: "Which HTML attribute is used to define inline styles?",
+        options: ["style", "class", "id"],
+        answer: 0
+    },
+    {
+        question: "Which symbol is used for comments in CSS?",
+        options: ["//", "/* */", "<!-- -->"],
+        answer: 1
+    },
+    {
+        question: "Which method is used in JavaScript to write output to the browser console?",
+        options: ["console.log()", "print()", "document.write()"],
+        answer: 0
+    },
+    {
+        question: "Which HTML tag is used to create a list with bullets?",
+        options: ["<ol>", "<ul>", "<li>"],
+        answer: 1
+    }
+];
+
+let current = 0;
+let score = 0;
+let timerInterval;
+
+// Login Button Click → Start Quiz
+function startQuiz() {
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("quizBox").style.display = "block";
+    loadQuestion();
+}
+
+// Load Question
+function loadQuestion() {
+    clearInterval(timerInterval);
+    let time = 15;
+    document.getElementById("timer").textContent = time;
+
+    const q = questions[current];
+    document.getElementById("question").textContent = q.question;
+
+    const optionsDiv = document.getElementById("options");
+    optionsDiv.innerHTML = "";
+
+    q.options.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = option;
+        btn.onclick = () => checkAnswer(index);
+        optionsDiv.appendChild(btn);
+        optionsDiv.appendChild(document.createElement("br"));
+    });
+
+    // Timer countdown
+    timerInterval = setInterval(() => {
+        time--;
+        document.getElementById("timer").textContent = time;
+        if (time === 0) nextQuestion();
+    }, 1000);
+}
+
+// Check Answer
+function checkAnswer(selected) {
+    if (selected === questions[current].answer) score++;
+    nextQuestion();
+}
+
+// Next Question
+function nextQuestion() {
+    clearInterval(timerInterval);
+    current++;
+    if (current < questions.length) {
+        loadQuestion();
+    } else {
+        document.getElementById("quizBox").innerHTML = 
+            "<h3>Quiz Finished!</h3>" +
+            "<p>Your Score: " + score + "/" + questions.length + "</p>" +
+            "<h4>Thank you</h4>" +
+            "<button onclick='location.reload()'>Quiz Completed</button>";
+          
+    }
+}
+</script>
+
+</body>
+</html> 
