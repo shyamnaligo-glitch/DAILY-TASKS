@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beautiful Nature Slider</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background:black;
+}
+
+.slider {
+    position: relative;
+    width: 80%;
+    max-width: 1300px;
+    max-height: 400px;
+    margin: 50px auto;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.slide button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.slide button:hover {
+    background: #0056b3;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.nav-btn:hover {
+    background: rgba(0,0,0,0.8);
+}
+</style>
+</head>
+
+<body>
+
+<div class="slider">
+    <div class="slides">
+        <div class="slide">
+            <img src="https://thumbs.dreamstime.com/b/picturesque-artistic-palm-leaf-blur-macro-dreamy-sunlight-tropical-garden-closeup-exotic-plants-abstract-nature-background-403925605.jpg?w=768" alt="Slide 1">
+            <button>Learn More 1</button>
+        </div>
+        <div class="slide">
+            <img src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg?w=768" alt="Slide 2">
+            <button>Learn More 2</button>
+        </div>
+        <div class="slide">
+            <img src="https://thumbs.dreamstime.com/b/spring-summer-season-abstract-nature-background-grass-blue-sky-back-49716369.jpg?w=768" alt="Slide 3">
+            <button>Learn More 3</button>
+        </div>
+        <div class="slide">
+            <img src="https://thumbs.dreamstime.com/b/autumn-fall-nature-scene-autumnal-park-beautiful-77869343.jpg?w=768" alt="Slide 4">
+            <button>Learn More 4</button>
+        </div>
+        <div class="slide">
+            <img src="https://thumbs.dreamstime.com/b/five-elements-nature-air-water-fire-earth-space-creation-natures-force-five-elements-nature-air-water-fire-earth-space-137991847.jpg?w=992" alt="Slide 5">
+            <button>Learn More 5</button>
+        </div>
+    </div>
+
+    <button class="nav-btn prev" onclick="prevSlide()">❮</button>
+    <button class="nav-btn next" onclick="nextSlide()">❯</button>
+</div>
+
+<script>
+let index = 0;
+const slides = document.querySelector('.slides');
+const totalSlides = document.querySelectorAll('.slide').length;
+
+function showSlide(i) {
+    if (i >= totalSlides) index = 0;
+    else if (i < 0) index = totalSlides - 1;
+    else index = i;
+
+    slides.style.transform = `translateX(${-index * 100}%)`;
+}
+
+function nextSlide() {
+    showSlide(index + 1);
+}
+
+function prevSlide() {
+    showSlide(index - 1);
+}
+</script>
+
+</body>
+</html>
