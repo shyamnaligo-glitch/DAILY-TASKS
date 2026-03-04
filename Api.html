@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>City Weather (No API Key)</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 330px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+input {
+    padding: 8px;
+    width: 70%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 8px 12px;
+    border: none;
+    background: #0072ff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #005ad1;
+}
+
+.result {
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>🌤 City Weather (IST)</h2>
+    <input type="text" id="city" placeholder="Enter City Name">
+    <button onclick="getWeather()">Search</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+async function getWeather() {
+
+    const city = document.getElementById("city").value;
+    if (!city) {
+        alert("Please enter a city name");
+        return;
+    }
+
+    try {
+    
+        const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`;
+        const geoResponse = await fetch(geoUrl);
+        const geoData = await geoResponse.json();
+
+        if (!geoData.results) {
+            document.getElementById("result").innerHTML = "City not found!";
+            return;
+        }
+
+        const lat = geoData.results[0].latitude;
+        const lon = geoData.results[0].longitude;
+        const cityName = geoData.results[0].name;
+        const country = geoData.results[0].country;
+
+
+        const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
+        const weatherResponse = await fetch(weatherUrl);
+        const weatherData = await weatherResponse.json();
+
+        const temp = weatherData.current_weather.temperature;
+        const wind = weatherData.current_weather.windspeed;
+        const weatherCode = weatherData.current_weather.weathercode;
+
+    
+        function getWeatherType(code) {
+            if (code === 0) return "Clear Sky ☀";
+            if (code <= 3) return "Partly Cloudy 🌤";
+            if (code <= 48) return "Foggy 🌫";
+            if (code <= 67) return "Rainy 🌧";
+            if (code <= 77) return "Snowy ❄";
+            if (code <= 99) return "Thunderstorm ⛈";
+            return "Unknown";
+        }
+
+        const weatherType = getWeatherType(weatherCode);
+
+    
+        const istTime = new Date().toLocaleString("en-IN", {
+            timeZone: "Asia/Kolkata"
+        });
+
+        document.getElementById("result").innerHTML = `
+            <p><strong>City:</strong> ${cityName}, ${country}</p>
+            <p><strong>Temperature:</strong> ${temp} °C</p>
+            <p><strong>Weather:</strong> ${weatherType}</p>
+            <p><strong>Wind Speed:</strong> ${wind} km/h</p>
+            <p><strong>Time (IST):</strong> ${istTime}</p>
+        `;
+
+    } catch (error) {
+        document.getElementById("result").innerHTML = "Error fetching data!";
+    }
+}
+</script>
+
+</body>
+</html>
