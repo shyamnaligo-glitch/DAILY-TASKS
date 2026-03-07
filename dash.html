@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Shop Dashboard ₹</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; background:#f4f4f4; }
+  .sidebar { width: 220px; background-color: #2c3e50; color: white; height: 100vh; float: left; padding: 20px; box-sizing: border-box; }
+  .sidebar h2 { margin-top: 0; }
+  .sidebar a { display: block; color: white; text-decoration: none; margin: 10px 0; padding: 10px; border-radius: 5px; cursor: pointer; }
+  .sidebar a.active, .sidebar a:hover { background-color: #34495e; }
+
+  .content { margin-left: 240px; padding: 20px; }
+  @media(max-width:768px){ .sidebar { width: 100%; height:auto; float:none; } .content { margin-left:0; } .cards { flex-direction: column; } .products { flex-direction: column; } }
+
+  .cards { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+  .card { flex: 1 1 200px; background: #ecf0f1; padding: 20px; border-radius: 8px; text-align: center; font-size: 18px; }
+
+  .products { display: flex; gap: 20px; flex-wrap: wrap; }
+  .product { width: 200px; background: #fff; padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+  .product img { width: 100%; border-radius: 5px; margin-bottom:10px; }
+  .product h3 { margin: 10px 0 5px 0; font-size: 16px; }
+  .product p { font-size: 13px; color: #555; margin: 5px 0; min-height:35px; }
+  .product .price { color: green; font-weight: bold; margin: 10px 0; }
+  .btn { padding: 8px 12px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-size:14px; }
+  .btn:hover { background-color: #2980b9; }
+
+  #cart { position: fixed; top: 20px; right: 20px; background: #3498db; color: white; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
+  #cartItems { display:none; background:#fff; color:#000; padding:15px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.2); position:absolute; right:0; top:40px; min-width:300px; z-index:1000; }
+  #cartItems h4{ margin-top:0; }
+  #cartItems ul { list-style:none; padding:0; margin:0; }
+  #cartItems li { margin:5px 0; display:flex; align-items:center; justify-content:space-between; }
+  #cartItems img { width:40px; height:40px; object-fit:cover; margin-right:10px; border-radius:5px; }
+
+  #toast { position:fixed; bottom:20px; right:20px; background:#2ecc71; color:white; padding:10px 15px; border-radius:5px; display:none; }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>Admin Panel</h2>
+  <a class="active" onclick="showSection('dashboard', this)">Dashboard</a>
+  <a onclick="showSection('products', this)">Products</a>
+</div>
+
+<div class="content">
+  <div id="dashboard">
+    <h1>Dashboard (Real-Time ₹)</h1>
+    <div class="cards">
+      <div class="card" id="userCount">Users: 1</div>
+      <div class="card" id="ordersCount">Orders: 0</div>
+      <div class="card" id="salesCount">Sales: 0</div>
+      <div class="card" id="revenueCount">Revenue: ₹0</div>
+    </div>
+  </div>
+
+  <div id="products" style="display:none;">
+    <h1>Mobile Products</h1>
+    <div class="products" id="productList"></div>
+  </div>
+</div>
+
+<div id="cart" onclick="toggleCart()">Cart: <span id="cartCount">0</span> items
+  <div id="cartItems">
+    <h4>Cart Items</h4>
+    <ul id="cartList"></ul>
+    <hr>
+    Total: ₹<span id="cartTotal">0.00</span>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// Realistic mobile products
+let products = [
+  {name:'iPhone 14', price:79900, desc:'6.1-inch display, A15 Bionic, 128GB', img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9YQ-XOZxnZ8uH0qnG9_1iYs61Yxko6AuGWg&s'},
+// {name:'Samsung Galaxy S23', price:72999, desc:'6.1-inch AMOLED, Snapdragon 8 Gen 2', img:'data:image/jpeg;base64,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'},
+  // {name:'OnePlus 11', price:56999, desc:'6.7-inch AMOLED, Snapdragon 8 Gen 2', img:'data:image/jpeg;base64,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'},
+  {name:'OPPO 13', price:64999, desc:'6.36-inch AMOLED, Snapdragon 8 Gen 2', img:'https://media-ik.croma.com/prod/https://media.tatacroma.com/Croma%20Assets/Communication/Mobiles/Images/319496_0_tooNpCpru.png?updatedAt=1762258040338?tr=w-400'},
+  {name:'Sphone 7', price:19999, desc:'6.3-inch OLED, Google Tensor G2', img:'https://m.media-amazon.com/images/I/41VrQtbmGjL._SY300_SX300_QL70_FMwebp_.jpg'}
+];
+
+let cart = [];
+let totalUsers = 1;
+let dashboardOrders = 0;
+let dashboardRevenue = 0;
+
+function renderProducts(){
+  let container = document.getElementById('productList');
+  container.innerHTML='';
+  products.forEach((p,index)=>{
+    let div=document.createElement('div');
+    div.className='product';
+    div.innerHTML=`
+      <img src="${p.img}" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <div class="price">₹${p.price.toLocaleString()}</div>
+      <button class="btn" onclick="addToCart(${index})">Add to Cart</button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// Add to cart (manual)
+function addToCart(index){
+  let product = products[index];
+  let existing = cart.find(item=>item.name===product.name);
+  if(existing) existing.qty++;
+  else cart.push({...product, qty:1});
+  updateCartDisplay();
+  showToast(product.name + ' added to cart!');
+}
+
+// Update cart UI
+function updateCartDisplay(){
+  document.getElementById('cartCount').innerText=cart.reduce((sum,i)=>sum+i.qty,0);
+  let list=document.getElementById('cartList');
+  list.innerHTML='';
+  let total=0;
+  cart.forEach(item=>{
+    total+=item.price*item.qty;
+    let li=document.createElement('li');
+    li.innerHTML=`<div style="display:flex;align-items:center;"><img src="${item.img}" alt="${item.name}">${item.name} x ${item.qty}</div> <span>₹${(item.price*item.qty).toLocaleString()}</span>`;
+    list.appendChild(li);
+  });
+  document.getElementById('cartTotal').innerText=total.toLocaleString();
+}
+
+// Dashboard updates (real-time independent)
+function updateDashboard(){
+  document.getElementById('userCount').innerText=`Users: ${totalUsers}`;
+  document.getElementById('ordersCount').innerText=`Orders: ${dashboardOrders}`;
+  document.getElementById('salesCount').innerText=`Sales: ${dashboardOrders}`;
+  document.getElementById('revenueCount').innerText=`Revenue: ₹${dashboardRevenue.toLocaleString()}`;
+}
+
+// Simulate real-time activity
+function simulateDashboardActivity(){
+  setInterval(()=>{
+    let randomProduct = products[Math.floor(Math.random()*products.length)];
+    let randomQty = Math.floor(Math.random()*3)+1;
+    totalUsers += Math.floor(Math.random()*2);
+    dashboardOrders += randomQty;
+    dashboardRevenue += randomProduct.price*randomQty;
+    updateDashboard();
+  }, 5000);
+}
+
+function toggleCart(){
+  let items=document.getElementById('cartItems');
+  items.style.display=items.style.display==='block'?'none':'block';
+}
+
+function showSection(section,el){
+  ['dashboard','products'].forEach(s=>document.getElementById(s).style.display='none');
+  document.getElementById(section).style.display='block';
+  document.querySelectorAll('.sidebar a').forEach(a=>a.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function showToast(msg){
+  let toast=document.getElementById('toast');
+  toast.innerText=msg;
+  toast.style.display='block';
+  setTimeout(()=>toast.style.display='none',1500);
+}
+
+// Initialize
+renderProducts();
+updateDashboard();
+simulateDashboardActivity();
+</script>
+
+</body>
+</html>

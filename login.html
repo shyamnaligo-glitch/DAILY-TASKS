@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register Login Logout</title>
+
+<style>
+body{
+  font-family: Arial;
+  background:#f2f2f2;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.container{
+  background:white;
+  padding:30px;
+  border-radius:8px;
+  box-shadow:0 0 10px rgba(0,0,0,0.2);
+  text-align:center;
+  width:260px;
+}
+
+input{
+  width:90%;
+  padding:10px;
+  margin:8px 0;
+}
+
+button{
+  padding:10px 20px;
+  background:#4CAF50;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#45a049;
+}
+
+.link{
+  color:blue;
+  cursor:pointer;
+  font-size:14px;
+}
+
+#dashboard{
+  display:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- REGISTER -->
+<div id="registerBox">
+<h2>Register</h2>
+
+<input type="text" id="regUser" placeholder="Username">
+<input type="password" id="regPass" placeholder="Password">
+
+<button onclick="register()">Register</button>
+
+<p class="link" onclick="showLogin()">Already have account? Login</p>
+</div>
+
+<!-- LOGIN -->
+<div id="loginBox" style="display:none;">
+<h2>Login</h2>
+
+<input type="text" id="loginUser" placeholder="Username">
+<input type="password" id="loginPass" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p class="link" onclick="showRegister()">Create account</p>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+<h2 id="welcome"></h2>
+<button onclick="logout()">Logout</button>
+</div>
+
+<p id="message"></p>
+
+</div>
+
+<script>
+
+function register(){
+
+let username=document.getElementById("regUser").value;
+let password=document.getElementById("regPass").value;
+
+let user={
+username:username,
+password:password
+};
+
+localStorage.setItem("user",JSON.stringify(user));
+
+document.getElementById("message").innerText="Registration successful. Please login.";
+showLogin();
+
+}
+
+function login(){
+
+let username=document.getElementById("loginUser").value;
+let password=document.getElementById("loginPass").value;
+
+let storedUser=JSON.parse(localStorage.getItem("user"));
+
+if(storedUser && username===storedUser.username && password===storedUser.password){
+
+document.getElementById("registerBox").style.display="none";
+document.getElementById("loginBox").style.display="none";
+document.getElementById("dashboard").style.display="block";
+
+document.getElementById("welcome").innerText="Hello " + username;
+
+}else{
+document.getElementById("message").innerText="Invalid login";
+}
+
+}
+
+function logout(){
+
+document.getElementById("dashboard").style.display="none";
+document.getElementById("loginBox").style.display="block";
+document.getElementById("message").innerText="Logged out";
+
+}
+
+function showLogin(){
+document.getElementById("registerBox").style.display="none";
+document.getElementById("loginBox").style.display="block";
+}
+
+function showRegister(){
+document.getElementById("registerBox").style.display="block";
+document.getElementById("loginBox").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
