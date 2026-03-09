@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Image Canvas (Random Images)</title>
+<style>
+:root {
+  --bg-dark: #0f172a;
+  --card-bg: #1e293b;
+  --accent: #38bdf8;
+  --text: #f8fafc;
+  --border: #334155;
+}
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family:system-ui,sans-serif; background:var(--bg-dark); color:var(--text); display:flex; height:100vh; }
+aside { width:300px; background:#020617; border-right:1px solid var(--border); padding:20px; display:flex; flex-direction:column; gap:20px; overflow-y:auto; }
+label { font-size:14px; font-weight:500; color:#94a3b8; display:block; margin-bottom:6px; }
+.history-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+.history-item { aspect-ratio:1; border-radius:8px; overflow:hidden; border:1px solid var(--border); cursor:pointer; transition: all 0.2s; }
+.history-item:hover { transform:scale(1.05); border-color:var(--accent); }
+.history-item img { width:100%; height:100%; object-fit:cover; }
+button { padding:10px; border:none; border-radius:8px; background:var(--accent); color:#000; cursor:pointer; font-weight:bold; }
+input[type=color], input[type=range] { width:100%; height:36px; border:none; border-radius:6px; cursor:pointer; }
+main { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px; gap:25px; }
+.viewport { width:512px; height:512px; background:var(--card-bg); border:2px dashed var(--border); border-radius:16px; position:relative; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.4); }
+.shape { position:absolute; cursor:move; user-select:none; box-shadow:0 4px 15px rgba(0,0,0,0.5); }
+.square { width:100px; height:100px; background:#38bdf8; border-radius:8px; }
+.circle { width:100px; height:100px; background:#f43f5e; border-radius:50%; }
+.input-panel { width:600px; background:var(--card-bg); padding:20px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.3); }
+textarea { width:100%; height:80px; background:#020617; color:white; border:1px solid var(--border); border-radius:8px; padding:10px; margin-bottom:12px; font-size:15px; resize:none; }
+.results { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:15px; max-height:220px; overflow-y:auto; }
+.results img { width:100%; height:100px; object-fit:cover; border-radius:8px; cursor:pointer; transition: transform 0.2s; }
+.results img:hover { transform:scale(1.05); }
+</style>
+</head>
+<body>
+
+<aside>
+<label>History</label>
+<div class="history-grid" id="history"></div>
+
+<label>Add Shapes</label>
+<button onclick="addSquare()">Square</button>
+<button onclick="addCircle()">Circle</button>
+
+<label>Background</label>
+<input type="color" id="bgColor" value="#1e293b" onchange="changeBg(this.value)">
+
+<label>Roundness</label>
+<input type="range" min="0" max="60" value="16" oninput="roundFrame(this.value)">
+
+<button onclick="clearCanvas()">Clear Canvas</button>
+<button onclick="downloadFrame()">Download</button>
+</aside>
+
+<main>
+<div class="viewport" id="canvas"></div>
+
+<div class="input-panel">
+<textarea id="prompt" placeholder="Search image like car, dog, nature, bike..."></textarea>
+<button onclick="searchImages()">Search Images</button>
+<div class="results" id="results"></div>
+</div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+const canvas = document.getElementById("canvas");
+const historyGrid = document.getElementById("history");
+const resultsDiv = document.getElementById("results");
+
+// Search images without API key
+function searchImages(){
+  const prompt = document.getElementById("prompt").value.trim();
+  if(!prompt) { alert("Enter search term"); return; }
+
+  resultsDiv.innerHTML = "";
+
+  for(let i=0;i<12;i++){
+    const img = document.createElement("img");
+    const randomSig = Math.floor(Math.random()*10000); // unique for each image
+    img.src = `https://source.unsplash.com/300x300/?${encodeURIComponent(prompt)}&sig=${randomSig}`;
+    img.onclick = () => { showImage(img.src); addHistory(img.src); }
+    resultsDiv.appendChild(img);
+  }
+}
+
+function showImage(src){
+  canvas.innerHTML = "";
+  const img = document.createElement("img");
+  img.src = src;
+  img.style.width="100%";
+  img.style.height="100%";
+  img.style.objectFit="cover";
+  canvas.appendChild(img);
+}
+
+function addHistory(src){
+  const item = document.createElement("div");
+  item.className="history-item";
+  const img = document.createElement("img");
+  img.src = src;
+  item.appendChild(img);
+  item.onclick = ()=>showImage(src);
+  historyGrid.prepend(item);
+}
+
+function addSquare(){
+  const s = document.createElement("div");
+  s.className="shape square";
+  s.style.top = Math.random()*400+"px";
+  s.style.left = Math.random()*400+"px";
+  makeDraggable(s);
+  canvas.appendChild(s);
+}
+
+function addCircle(){
+  const c = document.createElement("div");
+  c.className="shape circle";
+  c.style.top = Math.random()*400+"px";
+  c.style.left = Math.random()*400+"px";
+  makeDraggable(c);
+  canvas.appendChild(c);
+}
+
+function makeDraggable(el){
+  let offsetX, offsetY, isDown=false;
+  el.addEventListener("mousedown", e=>{ isDown=true; offsetX=e.offsetX; offsetY=e.offsetY; e.preventDefault(); });
+  document.addEventListener("mousemove", e=>{ if(!isDown) return; el.style.left=(e.pageX-canvas.offsetLeft-offsetX)+"px"; el.style.top=(e.pageY-canvas.offsetTop-offsetY)+"px"; });
+  document.addEventListener("mouseup", ()=>isDown=false);
+}
+
+function changeBg(color){ canvas.style.background=color; }
+function roundFrame(value){ canvas.style.borderRadius=value+"px"; }
+function clearCanvas(){ canvas.innerHTML=""; }
+function downloadFrame(){
+  html2canvas(canvas).then(c=>{
+    const link = document.createElement("a");
+    link.download = "canvas-image.png";
+    link.href = c.toDataURL();
+    link.click();
+  });
+}
+</script>
+</body>
+</html>
